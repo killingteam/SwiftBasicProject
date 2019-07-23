@@ -14,7 +14,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         let testObject:WDTest = WDTest.init()
-        testObject.testFun()
+//        testObject.testFun()
+//        testObject.stringTest()
+        testObject.arrayTest()
     }
 
 
