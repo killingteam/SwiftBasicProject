@@ -176,5 +176,75 @@ class WDTest: NSObject {
         for genre in favoriteGenres.sorted() {
             print("\(genre)")
         }
+        
+//        使用intersection(_:)方法根据两个集合中都包含的值创建的一个新的集合。
+//        使用symmetricDifference(_:)方法根据在一个集合中但不在两个集合中的值创建一个新的集合。
+//        使用union(_:)方法根据两个集合的值创建一个新的集合。
+//        使用subtracting(_:)方法根据不在该集合中的值创建一个新的集合。
+        
+        let oddDigits: Set = [1, 3, 5, 7, 9]
+        let evenDigits: Set = [0, 2, 4, 6, 8]
+        let singleDigitPrimeNumbers: Set = [2, 3, 5, 7]
+        
+        oddDigits.union(evenDigits).sorted()
+        // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        oddDigits.intersection(evenDigits).sorted()
+        // []
+        oddDigits.subtracting(singleDigitPrimeNumbers).sorted()
+        // [1, 9]
+        oddDigits.symmetricDifference(singleDigitPrimeNumbers).sorted()
+        // [1, 2, 9]
+        
+        
+        let houseAnimals: Set = ["🐶", "🐱"]
+        let farmAnimals: Set = ["🐮", "🐔", "🐑", "🐶", "🐱"]
+        let cityAnimals: Set = ["🐦", "🐭"]
+        
+        houseAnimals.isSubset(of: farmAnimals)
+        // true
+        farmAnimals.isSuperset(of: houseAnimals)
+        // true
+        farmAnimals.isDisjoint(with: cityAnimals)
+        // true
+        
+        var namesOfIntegers = [Int: String]()
+        namesOfIntegers[16] = "sixteen"
+        namesOfIntegers = [:]
+        // namesOfIntegers 又成为了一个 [Int: String] 类型的空字典
+        
+        var airports: [String: String] = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
+        print("The dictionary of airports contains \(airports.count) items.")
+        if airports.isEmpty {
+            print("The airports dictionary is empty.")
+        } else {
+            print("The airports dictionary is not empty.")
+        }
+        airports["LHR"] = "London"
+        
+        if let oldValue = airports.updateValue("Dublin Airport", forKey: "DUB") {
+            print("The old value for DUB was \(oldValue).")
+        }
+        
+        if let airportName = airports["DUB"] {
+            print("The name of the airport is \(airportName).")
+        } else {
+            print("That airport is not in the airports dictionary.")
+        }
+        
+        if let removedValue = airports.removeValue(forKey: "DUB") {
+            print("The removed airport's name is \(removedValue).")
+        } else {
+            print("The airports dictionary does not contain a value for DUB.")
+        }
+        
+        for (airportCode, airportName) in airports {
+            print("\(airportCode): \(airportName)")
+        }
+        
+        let airportCodes = [String](airports.keys)
+        // airportCodes 是 ["YYZ", "LHR"]
+        
+        let airportNames = [String](airports.values)
+        // airportNames 是 ["Toronto Pearson", "London Heathrow"]
     }
 }
