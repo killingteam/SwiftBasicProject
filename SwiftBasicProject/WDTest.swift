@@ -247,4 +247,193 @@ class WDTest: NSObject {
         let airportNames = [String](airports.values)
         // airportNames 是 ["Toronto Pearson", "London Heathrow"]
     }
+    
+    func controll() -> Void {
+        let minutes = 60
+//        for tickMark in 0..<minutes {
+//            // 每一分钟都渲染一个刻度线（60次）
+//            print(tickMark)
+//        }
+        
+        let minuteInterval = 5
+        for tickMark in stride(from: 0, to: minutes, by: minuteInterval) {
+            // 每5分钟渲染一个刻度线 (0, 5, 10, 15 ... 45, 50, 55)
+            print(tickMark)
+        }
+        
+        let hours = 12
+        let hourInterval = 3
+        for tickMark in stride(from: 3, through: hours, by: hourInterval) {
+            // 每3小时渲染一个刻度线 (3, 6, 9, 12)
+            print(tickMark)
+        }
+        
+        let someCharacter: Character = "z"
+        switch someCharacter {
+        case "a", "A":
+            print("The first letter of the alphabet")
+        case "z":
+            print("The last letter of the alphabet")
+        default:
+            print("Some other character")
+        }
+        // 输出 "The last letter of the alphabet"
+        
+        var approximateCount = 62
+        approximateCount = 0
+        let countedThings = "moons orbiting Saturn"
+        let naturalCount: String
+        switch approximateCount {
+        case 0:
+            naturalCount = "no"
+        case 1..<5:
+            naturalCount = "a few"
+        case 5..<12:
+            naturalCount = "several"
+        case 12..<100:
+            naturalCount = "dozens of"
+        case 100..<1000:
+            naturalCount = "hundreds of"
+        default:
+            naturalCount = "many"
+        }
+        print("There are \(naturalCount) \(countedThings).")
+        
+        let somePoint = (1, 1)
+        switch somePoint {
+        case (0, 0):
+            print("\(somePoint) is at the origin")
+        case (_, 0):
+            print("\(somePoint) is on the x-axis")
+        case (0, _):
+            print("\(somePoint) is on the y-axis")
+        case (-2...2, -2...2):
+            print("\(somePoint) is inside the box")
+        default:
+            print("\(somePoint) is outside of the box")
+        }
+        
+        let anotherPoint = (2, 0)
+        switch anotherPoint {
+        case (let x, 0):
+            print("on the x-axis with an x value of \(x)")
+        case (0, let y):
+            print("on the y-axis with a y value of \(y)")
+        case let (x, y):
+            print("somewhere else at (\(x), \(y))")
+        }
+        
+        let yetAnotherPoint = (1, -1)
+        switch yetAnotherPoint {
+        case let (x, y) where x == y:
+            print("(\(x), \(y)) is on the line x == y")
+        case let (x, y) where x == -y:
+            print("(\(x), \(y)) is on the line x == -y")
+        case let (x, y):
+            print("(\(x), \(y)) is just some arbitrary point")
+        }
+        // 输出 "(1, -1) is on the line x == -y"
+        
+        let integerToDescribe = 5
+        var description = "The number \(integerToDescribe) is"
+        switch integerToDescribe {
+        case 2, 3, 5, 7, 11, 13, 17, 19:
+            description += " a prime number, and also"
+            fallthrough
+        default:
+            description += " an integer."
+        }
+        print(description)
+        // 输出 "The number 5 is a prime number, and also an integer."
+        
+        let finalSquare = 25
+        var board = [Int](repeating: 0, count: finalSquare + 1)
+        board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
+        board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
+        var square = 0
+        var diceRoll = 0
+        gameLoop: while square != finalSquare {
+            diceRoll += 1
+            if diceRoll == 7 { diceRoll = 1 }
+            switch square + diceRoll {
+            case finalSquare:
+                // 骰子数刚好使玩家移动到最终的方格里，游戏结束。
+                break gameLoop
+            case let newSquare where newSquare > finalSquare:
+                // 骰子数将会使玩家的移动超出最后的方格，那么这种移动是不合法的，玩家需要重新掷骰子
+                continue gameLoop
+            default:
+                // 合法移动，做正常的处理
+                square += diceRoll
+                square += board[square]
+            }
+        }
+        print("Game over!")
+        
+        greet(person: ["name": "John"])
+        greet(person: ["name": "Jane", "location": "Cupertino"])
+        
+        if #available(iOS 10, macOS 10.12, *) {
+            // 在 iOS 使用 iOS 10 的 API, 在 macOS 使用 macOS 10.12 的 API
+        } else {
+            // 使用先前版本的 iOS 和 macOS 的 API
+        }
+        
+        arithmeticMean(1, 2, 3, 4, 5)
+        // 返回 3.0, 是这 5 个数的平均数。
+        arithmeticMean(3, 8.25, 18.75)
+        // 返回 10.0, 是这 3 个数的平均数。
+        
+        var someInt = 3
+        var anotherInt = 107
+        swapTwoInts(&someInt, &anotherInt)
+        
+        var currentValue = 3
+        let moveNearerToZero = chooseStepFunction(backward: currentValue > 0)
+        
+        print("Counting to zero:")
+        // Counting to zero:
+        while currentValue != 0 {
+            print("\(currentValue)... ")
+            currentValue = moveNearerToZero(currentValue)
+        }
+        print("zero!")
+    }
+    
+    func greet(person: [String: String]) {
+        guard let name = person["name"] else {
+            return
+        }
+        print("Hello \(name)")
+        guard let location = person["location"] else {
+            print("I hope the weather is nice near you.")
+            return
+        }
+        print("I hope the weather is nice in \(location).")
+    }
+    
+    func arithmeticMean(_ numbers: Double...) -> Double {
+        var total: Double = 0
+        for number in numbers {
+            total += number
+        }
+        return total / Double(numbers.count)
+    }
+    
+    func swapTwoInts(_ a: inout Int, _ b: inout Int) {
+        let temporaryA = a
+        a = b
+        b = temporaryA
+    }
+    
+    func stepForward(_ input: Int) -> Int {
+        return input + 1
+    }
+    func stepBackward(_ input: Int) -> Int {
+        return input - 1
+    }
+    
+    func chooseStepFunction(backward: Bool) -> (Int) -> Int {
+        return backward ? stepBackward : stepForward
+    }
 }

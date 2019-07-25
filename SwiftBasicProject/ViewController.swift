@@ -16,7 +16,8 @@ class ViewController: UIViewController {
         let testObject:WDTest = WDTest.init()
 //        testObject.testFun()
 //        testObject.stringTest()
-        testObject.arrayTest()
+//        testObject.arrayTest()
+        testObject.controll()
     }
 
 
