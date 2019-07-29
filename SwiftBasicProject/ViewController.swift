@@ -22,8 +22,11 @@ class ViewController: UIViewController {
 //        let testObject:WDTest1 = WDTest1.init()
 //        testObject.pageTest()
         
-        let enumerationTest = WDEnumerationTest.init()
-        enumerationTest.enumerationTest()
+//        let enumerationTest = WDEnumerationTest.init()
+//        enumerationTest.enumerationTest()
+        
+        let some = WDSomeClass.init()
+        some.test()
     }
 
 
