@@ -16,6 +16,7 @@
 		2227244922CD9D91001FA474 /* SwiftBasicProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2227244822CD9D91001FA474 /* SwiftBasicProjectUITests.swift */; };
 		3500AEE022E1C35F00363212 /* WDTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3500AEDF22E1C35F00363212 /* WDTest.swift */; };
 		3503775222E9D40700B11BAB /* WDTest1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3503775122E9D40700B11BAB /* WDTest1.swift */; };
+		350469B822EF152C0010337D /* WDEnumerationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350469B722EF152C0010337D /* WDEnumerationTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		2227244A22CD9D91001FA474 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3500AEDF22E1C35F00363212 /* WDTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDTest.swift; sourceTree = "<group>"; };
 		3503775122E9D40700B11BAB /* WDTest1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDTest1.swift; sourceTree = "<group>"; };
+		350469B722EF152C0010337D /* WDEnumerationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDEnumerationTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				2227242A22CD9D8F001FA474 /* ViewController.swift */,
 				3500AEDF22E1C35F00363212 /* WDTest.swift */,
 				3503775122E9D40700B11BAB /* WDTest1.swift */,
+				350469B722EF152C0010337D /* WDEnumerationTest.swift */,
 				2227242C22CD9D8F001FA474 /* Main.storyboard */,
 				2227242F22CD9D91001FA474 /* Assets.xcassets */,
 				2227243122CD9D91001FA474 /* LaunchScreen.storyboard */,
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				350469B822EF152C0010337D /* WDEnumerationTest.swift in Sources */,
 				3503775222E9D40700B11BAB /* WDTest1.swift in Sources */,
 				3500AEE022E1C35F00363212 /* WDTest.swift in Sources */,
 				2227242B22CD9D8F001FA474 /* ViewController.swift in Sources */,
