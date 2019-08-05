@@ -8,6 +8,38 @@
 
 import UIKit
 
+extension Double {
+    var km: Double { return self * 1_000.0 }
+    var m : Double { return self }
+    var cm: Double { return self / 100.0 }
+    var mm: Double { return self / 1_000.0 }
+    var ft: Double { return self / 3.28084 }
+}
+
+extension Int {
+    func repetitions(task: () -> Void) {
+        for _ in 0..<self {
+            task()
+        }
+    }
+}
+
+extension Int {
+    mutating func square() {
+        self = self * self
+    }
+}
+
+extension Int {
+    subscript(digitIndex: Int) -> Int {
+        var decimalBase = 1
+        for _ in 0..<digitIndex {
+            decimalBase *= 10
+        }
+        return (self / decimalBase) % 10
+    }
+}
+
 struct Resolution {
     var width = 0
     var height = 0
@@ -111,6 +143,44 @@ struct Animal {
     }
 }
 
+struct BlackjackCard {
+    
+    // 嵌套的 Suit 枚举
+    enum Suit: Character {
+        case spades = "♠", hearts = "♡", diamonds = "♢", clubs = "♣"
+    }
+    
+    // 嵌套的 Rank 枚举
+    enum Rank: Int {
+        case two = 2, three, four, five, six, seven, eight, nine, ten
+        case jack, queen, king, ace
+        struct Values {
+            let first: Int, second: Int?
+        }
+        var values: Values {
+            switch self {
+            case .ace:
+                return Values(first: 1, second: 11)
+            case .jack, .queen, .king:
+                return Values(first: 10, second: nil)
+            default:
+                return Values(first: self.rawValue, second: nil)
+            }
+        }
+    }
+    
+    // BlackjackCard 的属性和方法
+    let rank: Rank, suit: Suit
+    var description: String {
+        var output = "suit is \(suit.rawValue),"
+        output += " value is \(rank.values.first)"
+        if let second = rank.values.second {
+            output += " or \(second)"
+        }
+        return output
+    }
+}
+
 class WDSomeClass: NSObject {
     let someResolution = Resolution()
     let someVideoMode = VideoMode()
@@ -187,6 +257,41 @@ class WDSomeClass: NSObject {
             print("The anonymous creature could not be initialized")
         }
         // 打印 "The anonymous creature could not be initialized"
+        
+        let theAceOfSpades = BlackjackCard(rank: .ace, suit: .spades)
+        print("theAceOfSpades: \(theAceOfSpades.description)")
+        // 打印 “theAceOfSpades: suit is ♠, value is 1 or 11”
+        
+        let oneInch = 25.4.mm
+        print("One inch is \(oneInch) meters")
+        // 打印 “One inch is 0.0254 meters”
+        let threeFeet = 3.ft
+        print("Three feet is \(threeFeet) meters")
+        // 打印 “Three feet is 0.914399970739201 meters”
+        
+        let aMarathon = 42.km + 195.m
+        print("A marathon is \(aMarathon) meters long")
+        // 打印 “A marathon is 42195.0 meters long”
+        
+        3.repetitions(task: {
+            print("Hello!")
+        })
+        
+        3.repetitions {
+            print("Goodbye!")
+        }
+        
+        var someInt = 3
+        someInt.square()
+        
+        746381295[0]
+        // 返回 5
+        746381295[1]
+        // 返回 9
+        746381295[2]
+        // 返回 2
+        746381295[8]
+        // 返回 7
     }
     
     class Bank {
