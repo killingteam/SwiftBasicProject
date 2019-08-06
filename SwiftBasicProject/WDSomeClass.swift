@@ -292,6 +292,18 @@ class WDSomeClass: NSObject {
         // 返回 2
         746381295[8]
         // 返回 7
+        
+        var anotherInt = 107
+        swapTwoValues(&someInt, &anotherInt)
+        
+        var someString = "hello"
+        var anotherString = "world"
+        swapTwoValues(&someString, &anotherString)
+        
+        let doubleIndex = findIndex(of: 9.3, in: [3.14159, 0.1, 0.25])
+        // doubleIndex 类型为 Int?，其值为 nil，因为 9.3 不在数组中
+        let stringIndex = findIndex(of: "Andrea", in: ["Mike", "Malcolm", "Andrea"])
+        // stringIndex 类型为 Int?，其值为 2
     }
     
     class Bank {
@@ -306,4 +318,59 @@ class WDSomeClass: NSObject {
         }
     }
     
+    func swapTwoValues<TTTTTT>(_ a: inout TTTTTT, _ b: inout TTTTTT) {
+        let temporaryA = a
+        a = b
+        b = temporaryA
+    }
+    
+    struct Stack<Element> {
+        var items = [Element]()
+        mutating func push(_ item: Element) {
+            items.append(item)
+        }
+        mutating func pop() -> Element {
+            return items.removeLast()
+        }
+    }
+    
+    func findIndex<T: Equatable>(of valueToFind: T, in array:[T]) -> Int? {
+        for (index, value) in array.enumerated() {
+            if value == valueToFind {
+                return index
+            }
+        }
+        return nil
+    }
+    
+    
+}
+
+protocol Container {
+    associatedtype ItemType
+    mutating func append(_ item: ItemType)
+    var count: Int { get }
+    subscript(i: Int) -> ItemType { get }
+}
+
+struct IntStack: Container {
+    // IntStack 的原始实现部分
+    var items = [Int]()
+    mutating func push(_ item: Int) {
+        items.append(item)
+    }
+    mutating func pop() -> Int {
+        return items.removeLast()
+    }
+    // Container 协议的实现部分
+    typealias ItemType = Int
+    mutating func append(_ item: Int) {
+        self.push(item)
+    }
+    var count: Int {
+        return items.count
+    }
+    subscript(i: Int) -> Int {
+        return items[i]
+    }
 }
