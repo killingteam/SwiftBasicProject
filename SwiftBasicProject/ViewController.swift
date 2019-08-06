@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
 
@@ -25,8 +26,19 @@ class ViewController: UIViewController {
 //        let enumerationTest = WDEnumerationTest.init()
 //        enumerationTest.enumerationTest()
         
-        let some = WDSomeClass.init()
-        some.test()
+//        let some = WDSomeClass.init()
+//        some.test()
+        
+        Alamofire.request("https://httpbin.org/get").responseJSON { response in
+            print(response.request ?? "")  // 原始的URL请求
+            print(response.response ?? "") // HTTP URL响应
+            print(response.data ?? "")     // 服务器返回的数据
+            print(response.result)   // 响应序列化结果，在这个闭包里，存储的是JSON数据
+            
+            if let JSON = response.result.value {
+                print("JSON: \(JSON)")
+            }
+        }
     }
 
 
