@@ -18,6 +18,7 @@
 		3503775222E9D40700B11BAB /* WDTest1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3503775122E9D40700B11BAB /* WDTest1.swift */; };
 		350469B822EF152C0010337D /* WDEnumerationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350469B722EF152C0010337D /* WDEnumerationTest.swift */; };
 		350469BA22EF1D240010337D /* WDSomeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350469B922EF1D240010337D /* WDSomeClass.swift */; };
+		5A163E114EBAFE56956CF916 /* libPods-SwiftBasicProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB08BBFA3BA029E317B0194 /* libPods-SwiftBasicProject.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,10 +52,13 @@
 		2227244422CD9D91001FA474 /* SwiftBasicProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftBasicProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2227244822CD9D91001FA474 /* SwiftBasicProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBasicProjectUITests.swift; sourceTree = "<group>"; };
 		2227244A22CD9D91001FA474 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E13795B39F054CDB8FAAAD3 /* Pods-SwiftBasicProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftBasicProject.release.xcconfig"; path = "Target Support Files/Pods-SwiftBasicProject/Pods-SwiftBasicProject.release.xcconfig"; sourceTree = "<group>"; };
 		3500AEDF22E1C35F00363212 /* WDTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDTest.swift; sourceTree = "<group>"; };
 		3503775122E9D40700B11BAB /* WDTest1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDTest1.swift; sourceTree = "<group>"; };
 		350469B722EF152C0010337D /* WDEnumerationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDEnumerationTest.swift; sourceTree = "<group>"; };
 		350469B922EF1D240010337D /* WDSomeClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDSomeClass.swift; sourceTree = "<group>"; };
+		807F38AB7BC5B596D4B508F3 /* Pods-SwiftBasicProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftBasicProject.debug.xcconfig"; path = "Target Support Files/Pods-SwiftBasicProject/Pods-SwiftBasicProject.debug.xcconfig"; sourceTree = "<group>"; };
+		CAB08BBFA3BA029E317B0194 /* libPods-SwiftBasicProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwiftBasicProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A163E114EBAFE56956CF916 /* libPods-SwiftBasicProject.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +94,8 @@
 				2227243C22CD9D91001FA474 /* SwiftBasicProjectTests */,
 				2227244722CD9D91001FA474 /* SwiftBasicProjectUITests */,
 				2227242622CD9D8F001FA474 /* Products */,
+				E5ADD030EEEC88452A7D4315 /* Pods */,
+				A270805C0C32FFD43B129EB9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,6 +144,24 @@
 			path = SwiftBasicProjectUITests;
 			sourceTree = "<group>";
 		};
+		A270805C0C32FFD43B129EB9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CAB08BBFA3BA029E317B0194 /* libPods-SwiftBasicProject.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E5ADD030EEEC88452A7D4315 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				807F38AB7BC5B596D4B508F3 /* Pods-SwiftBasicProject.debug.xcconfig */,
+				2E13795B39F054CDB8FAAAD3 /* Pods-SwiftBasicProject.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,6 +169,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2227244D22CD9D91001FA474 /* Build configuration list for PBXNativeTarget "SwiftBasicProject" */;
 			buildPhases = (
+				B4FCAC52469C7369B817FC18 /* [CP] Check Pods Manifest.lock */,
 				2227242122CD9D8F001FA474 /* Sources */,
 				2227242222CD9D8F001FA474 /* Frameworks */,
 				2227242322CD9D8F001FA474 /* Resources */,
@@ -262,6 +288,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B4FCAC52469C7369B817FC18 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwiftBasicProject-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2227242122CD9D8F001FA474 /* Sources */ = {
@@ -446,6 +497,7 @@
 		};
 		2227244E22CD9D91001FA474 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 807F38AB7BC5B596D4B508F3 /* Pods-SwiftBasicProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -465,6 +517,7 @@
 		};
 		2227244F22CD9D91001FA474 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E13795B39F054CDB8FAAAD3 /* Pods-SwiftBasicProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
