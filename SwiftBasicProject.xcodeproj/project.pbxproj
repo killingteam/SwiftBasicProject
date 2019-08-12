@@ -18,6 +18,7 @@
 		3503775222E9D40700B11BAB /* WDTest1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3503775122E9D40700B11BAB /* WDTest1.swift */; };
 		350469B822EF152C0010337D /* WDEnumerationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350469B722EF152C0010337D /* WDEnumerationTest.swift */; };
 		350469BA22EF1D240010337D /* WDSomeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350469B922EF1D240010337D /* WDSomeClass.swift */; };
+		35BE5F7C23018A160014E4EC /* MyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BE5F7B23018A160014E4EC /* MyService.swift */; };
 		5A163E114EBAFE56956CF916 /* libPods-SwiftBasicProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB08BBFA3BA029E317B0194 /* libPods-SwiftBasicProject.a */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		3503775122E9D40700B11BAB /* WDTest1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDTest1.swift; sourceTree = "<group>"; };
 		350469B722EF152C0010337D /* WDEnumerationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDEnumerationTest.swift; sourceTree = "<group>"; };
 		350469B922EF1D240010337D /* WDSomeClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDSomeClass.swift; sourceTree = "<group>"; };
+		35BE5F7B23018A160014E4EC /* MyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyService.swift; sourceTree = "<group>"; };
 		807F38AB7BC5B596D4B508F3 /* Pods-SwiftBasicProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftBasicProject.debug.xcconfig"; path = "Target Support Files/Pods-SwiftBasicProject/Pods-SwiftBasicProject.debug.xcconfig"; sourceTree = "<group>"; };
 		CAB08BBFA3BA029E317B0194 /* libPods-SwiftBasicProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwiftBasicProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -122,6 +124,7 @@
 				2227242F22CD9D91001FA474 /* Assets.xcassets */,
 				2227243122CD9D91001FA474 /* LaunchScreen.storyboard */,
 				2227243422CD9D91001FA474 /* Info.plist */,
+				35BE5F7B23018A160014E4EC /* MyService.swift */,
 			);
 			path = SwiftBasicProject;
 			sourceTree = "<group>";
@@ -158,7 +161,6 @@
 				807F38AB7BC5B596D4B508F3 /* Pods-SwiftBasicProject.debug.xcconfig */,
 				2E13795B39F054CDB8FAAAD3 /* Pods-SwiftBasicProject.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -321,6 +323,7 @@
 			files = (
 				350469B822EF152C0010337D /* WDEnumerationTest.swift in Sources */,
 				3503775222E9D40700B11BAB /* WDTest1.swift in Sources */,
+				35BE5F7C23018A160014E4EC /* MyService.swift in Sources */,
 				3500AEE022E1C35F00363212 /* WDTest.swift in Sources */,
 				350469BA22EF1D240010337D /* WDSomeClass.swift in Sources */,
 				2227242B22CD9D8F001FA474 /* ViewController.swift in Sources */,
