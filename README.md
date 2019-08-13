@@ -1,2 +1,17 @@
 # SwiftBasicProject
-Referred to as SBProject.
+
+### 计划添加的功能
+
+1.相册功能
+
+2.相机视频功能
+
+3.滤镜UI
+
+4.根据查表图的滤镜效果
+
+5.metal练习
+
+6.网络层
+
+7.生产者消费者相关封装成第三方库
