@@ -18,6 +18,11 @@
 		3503775222E9D40700B11BAB /* WDTest1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3503775122E9D40700B11BAB /* WDTest1.swift */; };
 		350469B822EF152C0010337D /* WDEnumerationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350469B722EF152C0010337D /* WDEnumerationTest.swift */; };
 		350469BA22EF1D240010337D /* WDSomeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350469B922EF1D240010337D /* WDSomeClass.swift */; };
+		351C67102302897400577FC7 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 351C670D2302890B00577FC7 /* GPUImage.framework */; };
+		351C67122302899100577FC7 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 351C67112302899100577FC7 /* Photos.framework */; };
+		351C67142302899800577FC7 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 351C67132302899800577FC7 /* PhotosUI.framework */; };
+		351C671823028A2600577FC7 /* SBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351C671723028A2600577FC7 /* SBCameraViewController.swift */; };
+		351C671923028DAF00577FC7 /* GPUImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 351C670D2302890B00577FC7 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35BE5F7C23018A160014E4EC /* MyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BE5F7B23018A160014E4EC /* MyService.swift */; };
 		5A163E114EBAFE56956CF916 /* libPods-SwiftBasicProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB08BBFA3BA029E317B0194 /* libPods-SwiftBasicProject.a */; };
 /* End PBXBuildFile section */
@@ -37,7 +42,48 @@
 			remoteGlobalIDString = 2227242422CD9D8F001FA474;
 			remoteInfo = SwiftBasicProject;
 		};
+		351C67082302890B00577FC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 351C67012302890B00577FC7 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC6E7CAB1C39A9D8006DF678;
+			remoteInfo = GPUImage_macOS;
+		};
+		351C670A2302890B00577FC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 351C67012302890B00577FC7 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC6E7CB51C39A9D8006DF678;
+			remoteInfo = GPUImageTests_macOS;
+		};
+		351C670C2302890B00577FC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 351C67012302890B00577FC7 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9E34E91E524A2200B8604F;
+			remoteInfo = GPUImage_iOS;
+		};
+		351C670E2302890B00577FC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 351C67012302890B00577FC7 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9E34F11E524A2200B8604F;
+			remoteInfo = GPUImageTests_iOS;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		351C6715230289B800577FC7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				351C671923028DAF00577FC7 /* GPUImage.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2227242522CD9D8F001FA474 /* SwiftBasicProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBasicProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +104,10 @@
 		3503775122E9D40700B11BAB /* WDTest1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDTest1.swift; sourceTree = "<group>"; };
 		350469B722EF152C0010337D /* WDEnumerationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDEnumerationTest.swift; sourceTree = "<group>"; };
 		350469B922EF1D240010337D /* WDSomeClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDSomeClass.swift; sourceTree = "<group>"; };
+		351C67012302890B00577FC7 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = framework/GPUImage.xcodeproj; sourceTree = "<group>"; };
+		351C67112302899100577FC7 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		351C67132302899800577FC7 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
+		351C671723028A2600577FC7 /* SBCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBCameraViewController.swift; sourceTree = "<group>"; };
 		35BE5F7B23018A160014E4EC /* MyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyService.swift; sourceTree = "<group>"; };
 		807F38AB7BC5B596D4B508F3 /* Pods-SwiftBasicProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftBasicProject.debug.xcconfig"; path = "Target Support Files/Pods-SwiftBasicProject/Pods-SwiftBasicProject.debug.xcconfig"; sourceTree = "<group>"; };
 		CAB08BBFA3BA029E317B0194 /* libPods-SwiftBasicProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwiftBasicProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +118,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				351C67142302899800577FC7 /* PhotosUI.framework in Frameworks */,
+				351C67122302899100577FC7 /* Photos.framework in Frameworks */,
+				351C67102302897400577FC7 /* GPUImage.framework in Frameworks */,
 				5A163E114EBAFE56956CF916 /* libPods-SwiftBasicProject.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,6 +145,7 @@
 		2227241C22CD9D8F001FA474 = {
 			isa = PBXGroup;
 			children = (
+				351C67012302890B00577FC7 /* GPUImage.xcodeproj */,
 				2227242722CD9D8F001FA474 /* SwiftBasicProject */,
 				2227243C22CD9D91001FA474 /* SwiftBasicProjectTests */,
 				2227244722CD9D91001FA474 /* SwiftBasicProjectUITests */,
@@ -116,6 +170,7 @@
 			children = (
 				2227242822CD9D8F001FA474 /* AppDelegate.swift */,
 				2227242A22CD9D8F001FA474 /* ViewController.swift */,
+				351C671723028A2600577FC7 /* SBCameraViewController.swift */,
 				3500AEDF22E1C35F00363212 /* WDTest.swift */,
 				3503775122E9D40700B11BAB /* WDTest1.swift */,
 				350469B722EF152C0010337D /* WDEnumerationTest.swift */,
@@ -147,9 +202,22 @@
 			path = SwiftBasicProjectUITests;
 			sourceTree = "<group>";
 		};
+		351C67022302890B00577FC7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				351C67092302890B00577FC7 /* GPUImage.framework */,
+				351C670B2302890B00577FC7 /* GPUImageTests_macOS.xctest */,
+				351C670D2302890B00577FC7 /* GPUImage.framework */,
+				351C670F2302890B00577FC7 /* GPUImageTests_iOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		A270805C0C32FFD43B129EB9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				351C67132302899800577FC7 /* PhotosUI.framework */,
+				351C67112302899100577FC7 /* Photos.framework */,
 				CAB08BBFA3BA029E317B0194 /* libPods-SwiftBasicProject.a */,
 			);
 			name = Frameworks;
@@ -176,6 +244,7 @@
 				2227242222CD9D8F001FA474 /* Frameworks */,
 				2227242322CD9D8F001FA474 /* Resources */,
 				6ECA2EA2D6FEF20EB1F3F31A /* [CP] Copy Pods Resources */,
+				351C6715230289B800577FC7 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -256,6 +325,12 @@
 			mainGroup = 2227241C22CD9D8F001FA474;
 			productRefGroup = 2227242622CD9D8F001FA474 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 351C67022302890B00577FC7 /* Products */;
+					ProjectRef = 351C67012302890B00577FC7 /* GPUImage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				2227242422CD9D8F001FA474 /* SwiftBasicProject */,
@@ -264,6 +339,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		351C67092302890B00577FC7 /* GPUImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GPUImage.framework;
+			remoteRef = 351C67082302890B00577FC7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		351C670B2302890B00577FC7 /* GPUImageTests_macOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GPUImageTests_macOS.xctest;
+			remoteRef = 351C670A2302890B00577FC7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		351C670D2302890B00577FC7 /* GPUImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GPUImage.framework;
+			remoteRef = 351C670C2302890B00577FC7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		351C670F2302890B00577FC7 /* GPUImageTests_iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GPUImageTests_iOS.xctest;
+			remoteRef = 351C670E2302890B00577FC7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2227242322CD9D8F001FA474 /* Resources */ = {
@@ -356,6 +462,7 @@
 				3503775222E9D40700B11BAB /* WDTest1.swift in Sources */,
 				35BE5F7C23018A160014E4EC /* MyService.swift in Sources */,
 				3500AEE022E1C35F00363212 /* WDTest.swift in Sources */,
+				351C671823028A2600577FC7 /* SBCameraViewController.swift in Sources */,
 				350469BA22EF1D240010337D /* WDSomeClass.swift in Sources */,
 				2227242B22CD9D8F001FA474 /* ViewController.swift in Sources */,
 				2227242922CD9D8F001FA474 /* AppDelegate.swift in Sources */,
@@ -535,7 +642,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = U3M38WK58L;
 				INFOPLIST_FILE = SwiftBasicProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -555,7 +662,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = U3M38WK58L;
 				INFOPLIST_FILE = SwiftBasicProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (

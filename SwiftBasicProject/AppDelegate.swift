@@ -12,10 +12,32 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var rootViewController: UIViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        self.window=[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//        self.window.backgroundColor=CusBlue;
+//
+//        VersionViewController *vc =[[VersionViewController alloc] initWithNibName:@"VersionViewController" bundle:nil];
+//
+//        CustomNavigationController * nav=[[CustomNavigationController alloc] initWithRootViewController:vc];
+//        nav.navigationBarHidden=YES;
+//        self.rootViewController=vc;
+//        self.window.rootViewController = nav;
+//        [self.window makeKeyAndVisible];
+        
+        self.window = UIWindow.init(frame: UIScreen.main.bounds)
+        self.window?.backgroundColor = UIColor.white
+        
+        let vc = SBCameraViewController.init()
+        
+        let nav = UINavigationController.init(rootViewController: vc)
+        nav.isNavigationBarHidden = true
+        self.rootViewController = nav
+        self.window?.rootViewController = nav
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 

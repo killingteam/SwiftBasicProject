@@ -13,7 +13,12 @@ import SnapKit
 
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
-    lazy var box = UIView()
+    lazy var box = UIButton()
+    
+    @objc dynamic func click() {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -24,6 +29,10 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         self.view.addSubview(tableView)
         
         self.view.addSubview(box)
+//        box.addTarget(self, action: #selector(self.boxClick(button: self.box)), for: .touchUpOutside)
+        box.addTarget(self,
+                         action: #selector(click),
+                         for: .touchUpInside)
         box.backgroundColor = .green
         box.snp.makeConstraints { (make) -> Void in
             make.width.height.equalTo(50)
@@ -116,6 +125,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         }
     }
     
+    func boxClick(button : UIButton) -> Void {
+        
+    }
     
     func nsdataToJSON(data: NSData) -> AnyObject? {
         do {

@@ -60,12 +60,12 @@ struct FixedLengthRange {
 struct Point {
     var x = 0.0, y = 0.0
 }
-struct Size {
+struct WDSize {
     var width = 0.0, height = 0.0
 }
 struct Rect {
     var origin = Point()
-    var size = Size()
+    var size = WDSize()
     var center: Point {
         get {
             let centerX = origin.x + (size.width / 2)
@@ -218,7 +218,7 @@ class WDSomeClass: NSObject {
         // 该区间现在表示整数6，7，8
         
         var square = Rect(origin: Point(x: 0.0, y: 0.0),
-                          size: Size(width: 10.0, height: 10.0))
+                          size: WDSize(width: 10.0, height: 10.0))
         let initialSquareCenter = square.center
         square.center = Point(x: 15.0, y: 15.0)
         print("square.origin is now at (\(square.origin.x), \(square.origin.y))")
