@@ -8,6 +8,5 @@ target 'SwiftBasicProject' do
   pod 'Alamofire','~> 4.8.2'
   pod 'Moya', '~> 12.0'
   pod 'SnapKit'
-  pod 'GPUImage'
   
 end

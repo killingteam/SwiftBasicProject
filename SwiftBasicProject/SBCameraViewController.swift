@@ -10,6 +10,7 @@ import UIKit
 import CoreImage
 import GPUImage
 import AVFoundation
+import SnapKit
 
 class SBCameraViewController: UIViewController {
     let fbSize = Size(width: 640, height: 480)
@@ -24,23 +25,50 @@ class SBCameraViewController: UIViewController {
     let blendFilter = AlphaBlend()
     var camera:Camera!
     var renderView:RenderView!
-    
+    var lookUpFilter:LookupFilter!
+    var lookupImg:PictureOutput!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.renderView = RenderView.init(frame: self.view.bounds)
         self.view.addSubview(self.renderView)
         
+        let path:String! = Bundle.main.path(forResource: "filterResources/892801501567939852359ba6ee4d4ad8", ofType: "png")
+        let image:UIImage! = UIImage.init(contentsOfFile: path)
+        
+        lookUpFilter = LookupFilter.init()
+        lookUpFilter.intensity = 0.5
+        lookUpFilter.lookupImage = PictureInput.init(image: image)
+        
         do {
             camera = try Camera(sessionPreset:.vga640x480)
             camera.runBenchmark = true
             camera.delegate = self
-            camera --> saturationFilter --> blendFilter --> renderView
+//            camera --> saturationFilter --> blendFilter --> lookUpFilter --> renderView
+            camera --> lookUpFilter --> renderView
             lineGenerator --> blendFilter
             camera.startCapture()
         } catch {
             fatalError("Could not initialize rendering pipeline: \(error)")
         }
+        
+        let slider:UISlider = UISlider.init()
+        slider.minimumValue = 0.0
+        slider.maximumValue = 1.0
+        slider.value = 0.5
+        slider.addTarget(self, action: #selector(sliderChanged(seliderValue:)), for: .valueChanged)
+        self.view.addSubview(slider)
+        
+        slider.snp.makeConstraints { (make) in
+            make.center.equalTo(self.view)
+            make.right.equalTo(16.0)
+            make.right.equalTo(-16.0)
+            make.height.equalTo(44.0)
+        }
+    }
+    
+    @objc func sliderChanged(seliderValue:UISlider) {
+        lookUpFilter.intensity = seliderValue.value
     }
 }
 

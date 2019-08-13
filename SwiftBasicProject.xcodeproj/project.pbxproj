@@ -23,6 +23,7 @@
 		351C67142302899800577FC7 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 351C67132302899800577FC7 /* PhotosUI.framework */; };
 		351C671823028A2600577FC7 /* SBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351C671723028A2600577FC7 /* SBCameraViewController.swift */; };
 		351C671923028DAF00577FC7 /* GPUImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 351C670D2302890B00577FC7 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		351C672C2302B52200577FC7 /* filterResources in Resources */ = {isa = PBXBuildFile; fileRef = 351C672B2302B52200577FC7 /* filterResources */; };
 		35BE5F7C23018A160014E4EC /* MyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BE5F7B23018A160014E4EC /* MyService.swift */; };
 		5A163E114EBAFE56956CF916 /* libPods-SwiftBasicProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB08BBFA3BA029E317B0194 /* libPods-SwiftBasicProject.a */; };
 /* End PBXBuildFile section */
@@ -108,6 +109,7 @@
 		351C67112302899100577FC7 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		351C67132302899800577FC7 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
 		351C671723028A2600577FC7 /* SBCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBCameraViewController.swift; sourceTree = "<group>"; };
+		351C672B2302B52200577FC7 /* filterResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = filterResources; sourceTree = "<group>"; };
 		35BE5F7B23018A160014E4EC /* MyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyService.swift; sourceTree = "<group>"; };
 		807F38AB7BC5B596D4B508F3 /* Pods-SwiftBasicProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftBasicProject.debug.xcconfig"; path = "Target Support Files/Pods-SwiftBasicProject/Pods-SwiftBasicProject.debug.xcconfig"; sourceTree = "<group>"; };
 		CAB08BBFA3BA029E317B0194 /* libPods-SwiftBasicProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwiftBasicProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +170,7 @@
 		2227242722CD9D8F001FA474 /* SwiftBasicProject */ = {
 			isa = PBXGroup;
 			children = (
+				351C672B2302B52200577FC7 /* filterResources */,
 				2227242822CD9D8F001FA474 /* AppDelegate.swift */,
 				2227242A22CD9D8F001FA474 /* ViewController.swift */,
 				351C671723028A2600577FC7 /* SBCameraViewController.swift */,
@@ -376,6 +379,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				351C672C2302B52200577FC7 /* filterResources in Resources */,
 				2227243322CD9D91001FA474 /* LaunchScreen.storyboard in Resources */,
 				2227243022CD9D91001FA474 /* Assets.xcassets in Resources */,
 				2227242E22CD9D8F001FA474 /* Main.storyboard in Resources */,
