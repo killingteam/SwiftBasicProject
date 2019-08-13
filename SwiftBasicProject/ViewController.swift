@@ -9,9 +9,11 @@
 import UIKit
 import Alamofire
 import Moya
+import SnapKit
 
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
+    lazy var box = UIView()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -20,6 +22,13 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         tableView.dataSource = self
         tableView.delegate = self
         self.view.addSubview(tableView)
+        
+        self.view.addSubview(box)
+        box.backgroundColor = .green
+        box.snp.makeConstraints { (make) -> Void in
+            make.width.height.equalTo(50)
+            make.center.equalTo(self.view)
+        }
         
 //        let testObject:WDTest = WDTest.init()
 //        testObject.testFun()
