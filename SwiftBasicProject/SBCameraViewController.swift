@@ -13,6 +13,9 @@ import AVFoundation
 import SnapKit
 
 class SBCameraViewController: UIViewController {
+    var selectIndex = 0
+    
+    
     let fbSize = Size(width: 1920, height: 1080)
     let faceDetector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyLow])
     var shouldDetectFaces = true
@@ -25,8 +28,29 @@ class SBCameraViewController: UIViewController {
     let blendFilter = AlphaBlend()
     var camera:Camera!
     var renderView:RenderView!
-    var lookUpFilter:LookupFilter!
-    var lookupImg:PictureOutput!
+    
+    //高斯模糊
+    lazy var gaussianBlurFilter:GaussianBlur! = {
+        let filter = GaussianBlur.init()
+        return filter
+    }()
+    
+    //查表滤镜
+    lazy var lookUpFilter:LookupFilter! = {
+        let path:String! = Bundle.main.path(forResource: "filterResources/892801501567939852359ba6ee4d4ad8", ofType: "png")
+        let image:UIImage! = UIImage.init(contentsOfFile: path)
+        
+        let lookUpFilter = LookupFilter.init()
+        lookUpFilter.intensity = 0.5
+        lookUpFilter.lookupImage = PictureInput.init(image: image)
+        return lookUpFilter
+    }()
+    
+    //模仿ios7控制中心的模糊效果
+    lazy var iOSBlurFilter:iOSBlur! = {
+        let fiter = iOSBlur.init()
+        return fiter
+    }()
     
     lazy var collectionView:UICollectionView = {
         let rect = UIScreen.main.bounds
@@ -44,7 +68,7 @@ class SBCameraViewController: UIViewController {
         collectionView.backgroundColor = UIColor.clear
         
         // 注册cell
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(TitleCell.self, forCellWithReuseIdentifier: "TitleCell")
         
         return collectionView;
     }()
@@ -55,21 +79,15 @@ class SBCameraViewController: UIViewController {
         self.view.addSubview(self.renderView)
         self.view.addSubview(self.collectionView)
         
-        let path:String! = Bundle.main.path(forResource: "filterResources/892801501567939852359ba6ee4d4ad8", ofType: "png")
-        let image:UIImage! = UIImage.init(contentsOfFile: path)
-        
-        lookUpFilter = LookupFilter.init()
-        lookUpFilter.intensity = 0.5
-        lookUpFilter.lookupImage = PictureInput.init(image: image)
-        
         do {
             camera = try Camera(sessionPreset:.hd1920x1080)
             camera.runBenchmark = true
             camera.delegate = self
 //            camera --> saturationFilter --> blendFilter --> renderView
 //            camera --> lookUpFilter --> renderView
-            camera --> renderView
 //            lineGenerator --> blendFilter
+            camera --> renderView
+
             camera.startCapture()
         } catch {
             fatalError("Could not initialize rendering pipeline: \(error)")
@@ -91,25 +109,42 @@ class SBCameraViewController: UIViewController {
     }
     
     @objc func sliderChanged(seliderValue:UISlider) {
-        lookUpFilter.intensity = seliderValue.value
+        if self.selectIndex == 1 {
+            lookUpFilter.intensity = seliderValue.value
+        }else if self.selectIndex == 2 {
+            gaussianBlurFilter.blurRadiusInPixels = seliderValue.value * 80.0
+        }
+        
     }
 }
 
 extension SBCameraViewController:UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = UIColor.white
+        let cell:TitleCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TitleCell", for: indexPath) as! TitleCell
+        cell.titleLable.text = "\(indexPath.row)"
         return cell;
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         camera.removeAllTargets()
         lookUpFilter.removeAllTargets()
-        camera --> lookUpFilter --> renderView
+        gaussianBlurFilter.removeAllTargets()
+        iOSBlurFilter.removeAllTargets()
+        
+        if indexPath.row == 1 {
+            camera --> lookUpFilter --> renderView
+        }else if indexPath.row == 2 {
+            camera --> gaussianBlurFilter --> renderView
+        }else if indexPath.row == 3{
+            camera --> iOSBlurFilter --> renderView
+        }else {
+            camera --> renderView
+        }
+        self.selectIndex = indexPath.row
     }
 }
 
