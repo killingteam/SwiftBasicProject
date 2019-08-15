@@ -13,7 +13,7 @@ import AVFoundation
 import SnapKit
 
 class SBCameraViewController: UIViewController {
-    let fbSize = Size(width: 640, height: 480)
+    let fbSize = Size(width: 1920, height: 1080)
     let faceDetector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyLow])
     var shouldDetectFaces = true
     lazy var lineGenerator: LineGenerator = {
@@ -28,10 +28,32 @@ class SBCameraViewController: UIViewController {
     var lookUpFilter:LookupFilter!
     var lookupImg:PictureOutput!
     
+    lazy var collectionView:UICollectionView = {
+        let rect = UIScreen.main.bounds
+        
+        let layout = UICollectionViewFlowLayout.init()
+        layout.itemSize = CGSize(width: 60, height: 60)
+        layout.minimumLineSpacing = 5
+        layout.minimumInteritemSpacing = 5
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets.init(top: 0, left: 5, bottom: 0, right: 5)
+        
+        let collectionView = UICollectionView.init(frame: CGRect.init(x: 0, y: rect.height - 70, width: rect.width, height: 70), collectionViewLayout: layout)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = UIColor.clear
+        
+        // 注册cell
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        
+        return collectionView;
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.renderView = RenderView.init(frame: self.view.bounds)
         self.view.addSubview(self.renderView)
+        self.view.addSubview(self.collectionView)
         
         let path:String! = Bundle.main.path(forResource: "filterResources/892801501567939852359ba6ee4d4ad8", ofType: "png")
         let image:UIImage! = UIImage.init(contentsOfFile: path)
@@ -41,12 +63,13 @@ class SBCameraViewController: UIViewController {
         lookUpFilter.lookupImage = PictureInput.init(image: image)
         
         do {
-            camera = try Camera(sessionPreset:.vga640x480)
+            camera = try Camera(sessionPreset:.hd1920x1080)
             camera.runBenchmark = true
             camera.delegate = self
-//            camera --> saturationFilter --> blendFilter --> lookUpFilter --> renderView
-            camera --> lookUpFilter --> renderView
-            lineGenerator --> blendFilter
+//            camera --> saturationFilter --> blendFilter --> renderView
+//            camera --> lookUpFilter --> renderView
+            camera --> renderView
+//            lineGenerator --> blendFilter
             camera.startCapture()
         } catch {
             fatalError("Could not initialize rendering pipeline: \(error)")
@@ -60,15 +83,33 @@ class SBCameraViewController: UIViewController {
         self.view.addSubview(slider)
         
         slider.snp.makeConstraints { (make) in
-            make.center.equalTo(self.view)
-            make.right.equalTo(16.0)
             make.right.equalTo(-16.0)
+            make.left.equalTo(16.0)
             make.height.equalTo(44.0)
+            make.bottom.equalTo(-70.0)
         }
     }
     
     @objc func sliderChanged(seliderValue:UISlider) {
         lookUpFilter.intensity = seliderValue.value
+    }
+}
+
+extension SBCameraViewController:UICollectionViewDelegate,UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 50
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        cell.backgroundColor = UIColor.white
+        return cell;
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        camera.removeAllTargets()
+        lookUpFilter.removeAllTargets()
+        camera --> lookUpFilter --> renderView
     }
 }
 
