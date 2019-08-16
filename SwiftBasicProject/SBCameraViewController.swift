@@ -73,11 +73,21 @@ class SBCameraViewController: UIViewController {
         return collectionView;
     }()
     
+    lazy var slider:UISlider = {
+        let slider:UISlider = UISlider.init()
+        slider.minimumValue = 0.0
+        slider.maximumValue = 1.0
+        slider.value = 0.5
+        slider.addTarget(self, action: #selector(sliderChanged(seliderValue:)), for: .valueChanged)
+        return slider
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.renderView = RenderView.init(frame: self.view.bounds)
         self.view.addSubview(self.renderView)
         self.view.addSubview(self.collectionView)
+        self.collectionView.selectItem(at: IndexPath.init(row: 0, section: 0), animated: true, scrollPosition: .top)
         
         do {
             camera = try Camera(sessionPreset:.hd1920x1080)
@@ -93,11 +103,6 @@ class SBCameraViewController: UIViewController {
             fatalError("Could not initialize rendering pipeline: \(error)")
         }
         
-        let slider:UISlider = UISlider.init()
-        slider.minimumValue = 0.0
-        slider.maximumValue = 1.0
-        slider.value = 0.5
-        slider.addTarget(self, action: #selector(sliderChanged(seliderValue:)), for: .valueChanged)
         self.view.addSubview(slider)
         
         slider.snp.makeConstraints { (make) in
@@ -114,7 +119,6 @@ class SBCameraViewController: UIViewController {
         }else if self.selectIndex == 2 {
             gaussianBlurFilter.blurRadiusInPixels = seliderValue.value * 80.0
         }
-        
     }
 }
 
@@ -130,6 +134,11 @@ extension SBCameraViewController:UICollectionViewDelegate,UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == self.selectIndex {
+            return
+        }
+        
+        
         camera.removeAllTargets()
         lookUpFilter.removeAllTargets()
         gaussianBlurFilter.removeAllTargets()
@@ -144,7 +153,18 @@ extension SBCameraViewController:UICollectionViewDelegate,UICollectionViewDataSo
         }else {
             camera --> renderView
         }
+        
+        slider.value = 0.5
         self.selectIndex = indexPath.row
+        self.sliderChanged(seliderValue: self.slider)
+        
+        let cell:TitleCell = collectionView.cellForItem(at: indexPath) as! TitleCell
+        cell.isSelected = false
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell:TitleCell = collectionView.cellForItem(at: indexPath) as! TitleCell
+        cell.isSelected = true
     }
 }
 

@@ -12,7 +12,8 @@ import SnapKit
 class TitleCell: UICollectionViewCell {
     lazy var titleLable:UILabel = {
         let lable = UILabel.init()
-        lable.textColor = UIColor.blue
+        lable.textColor = UIColor.red
+        lable.textAlignment = .center
         return lable
     }()
     
@@ -22,6 +23,21 @@ class TitleCell: UICollectionViewCell {
         self.addSubview(self.titleLable)
         self.titleLable.snp.makeConstraints { (make) in
             make.left.right.top.bottom.equalTo(0.0)
+        }
+    }
+    
+    override var isSelected: Bool{
+        set{
+            let tempValue = newValue
+            if tempValue {
+                self.backgroundColor = UIColor.blue
+            }else {
+                self.backgroundColor = UIColor.clear
+            }
+            super.isSelected = newValue
+        }
+        get{
+            return super.isSelected
         }
     }
     
