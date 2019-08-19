@@ -14,6 +14,7 @@ class TitleCell: UICollectionViewCell {
         let lable = UILabel.init()
         lable.textColor = UIColor.red
         lable.textAlignment = .center
+        lable.numberOfLines = 0
         return lable
     }()
     

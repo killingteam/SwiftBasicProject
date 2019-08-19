@@ -26,8 +26,12 @@ class SBCameraViewController: UIViewController {
     }()
     let saturationFilter = SaturationAdjustment()
     let blendFilter = AlphaBlend()
+    let brightnessFilter = BrightnessAdjustment()
+    
     var camera:Camera!
     var renderView:RenderView!
+    let dataList:Array = ["无效果","自定义光效","高斯模糊","ios7模糊","亮度","饱和度"]
+    
     
     //高斯模糊
     lazy var gaussianBlurFilter:GaussianBlur! = {
@@ -118,18 +122,27 @@ class SBCameraViewController: UIViewController {
             lookUpFilter.intensity = seliderValue.value
         }else if self.selectIndex == 2 {
             gaussianBlurFilter.blurRadiusInPixels = seliderValue.value * 80.0
+        }else if self.selectIndex == 3 {
+            iOSBlurFilter.rangeReductionFactor = seliderValue.value
+            iOSBlurFilter.blurRadiusInPixels = seliderValue.value * 80.0
+            //白平衡
+//            iOSBlurFilter.saturation = seliderValue.value
+        }else if self.selectIndex == 4 {
+            brightnessFilter.brightness = seliderValue.value
+        }else if self.selectIndex == 5 {
+            saturationFilter.saturation = seliderValue.value * 2.0
         }
     }
 }
 
 extension SBCameraViewController:UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return dataList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:TitleCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TitleCell", for: indexPath) as! TitleCell
-        cell.titleLable.text = "\(indexPath.row)"
+        cell.titleLable.text = "\(dataList[indexPath.row])"
         return cell;
     }
     
@@ -138,18 +151,31 @@ extension SBCameraViewController:UICollectionViewDelegate,UICollectionViewDataSo
             return
         }
         
+        self.slider.value = 0.5
         
         camera.removeAllTargets()
         lookUpFilter.removeAllTargets()
         gaussianBlurFilter.removeAllTargets()
         iOSBlurFilter.removeAllTargets()
+        brightnessFilter.removeAllTargets()
+        saturationFilter.removeAllTargets()
         
         if indexPath.row == 1 {
+            lookUpFilter.intensity = self.slider.value
             camera --> lookUpFilter --> renderView
         }else if indexPath.row == 2 {
+            gaussianBlurFilter.blurRadiusInPixels = self.slider.value * 80.0
             camera --> gaussianBlurFilter --> renderView
-        }else if indexPath.row == 3{
+        }else if indexPath.row == 3 {
+            iOSBlurFilter.rangeReductionFactor = self.slider.value
+            iOSBlurFilter.blurRadiusInPixels = self.slider.value * 80.0
             camera --> iOSBlurFilter --> renderView
+        }else if indexPath.row == 4 {
+            brightnessFilter.brightness = self.slider.value
+            camera --> brightnessFilter --> renderView
+        }else if indexPath.row == 5 {
+            saturationFilter.saturation = self.slider.value
+            camera --> saturationFilter --> renderView
         }else {
             camera --> renderView
         }
@@ -163,51 +189,51 @@ extension SBCameraViewController:UICollectionViewDelegate,UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell:TitleCell = collectionView.cellForItem(at: indexPath) as! TitleCell
-        cell.isSelected = true
+        let cell = self.collectionView.cellForItem(at: indexPath)
+        cell?.isSelected = true
     }
 }
 
 extension SBCameraViewController: CameraDelegate {
     func didCaptureBuffer(_ sampleBuffer: CMSampleBuffer) {
-        guard shouldDetectFaces else {
-            lineGenerator.renderLines([]) // clear
-            return
-        }
-        if let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
-            let attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, sampleBuffer, CMAttachmentMode(kCMAttachmentMode_ShouldPropagate))!
-            let img = CIImage(cvPixelBuffer: pixelBuffer, options: attachments as? [String: AnyObject])
-            var lines = [Line]()
-            for feature in (faceDetector?.features(in: img, options: [CIDetectorImageOrientation: 6]))! {
-                if feature is CIFaceFeature {
-                    lines = lines + faceLines(feature.bounds)
-                }
-            }
-            lineGenerator.renderLines(lines)
-        }
+//        guard shouldDetectFaces else {
+//            lineGenerator.renderLines([]) // clear
+//            return
+//        }
+//        if let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
+//            let attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, sampleBuffer, CMAttachmentMode(kCMAttachmentMode_ShouldPropagate))!
+//            let img = CIImage(cvPixelBuffer: pixelBuffer, options: attachments as? [String: AnyObject])
+//            var lines = [Line]()
+//            for feature in (faceDetector?.features(in: img, options: [CIDetectorImageOrientation: 6]))! {
+//                if feature is CIFaceFeature {
+//                    lines = lines + faceLines(feature.bounds)
+//                }
+//            }
+//            lineGenerator.renderLines(lines)
+//        }
     }
     
-    func faceLines(_ bounds: CGRect) -> [Line] {
+//    func faceLines(_ bounds: CGRect) -> [Line] {
         // convert from CoreImage to GL coords
-        let flip = CGAffineTransform(scaleX: 1, y: -1)
-        let rotate = flip.rotated(by: CGFloat(-.pi / 2.0))
-        let translate = rotate.translatedBy(x: -1, y: -1)
-        let xform = translate.scaledBy(x: CGFloat(2/fbSize.width), y: CGFloat(2/fbSize.height))
-        let glRect = bounds.applying(xform)
-        
-        let x = Float(glRect.origin.x)
-        let y = Float(glRect.origin.y)
-        let width = Float(glRect.size.width)
-        let height = Float(glRect.size.height)
-        
-        let tl = Position(x, y)
-        let tr = Position(x + width, y)
-        let bl = Position(x, y + height)
-        let br = Position(x + width, y + height)
-        
-        return [.segment(p1:tl, p2:tr),   // top
-            .segment(p1:tr, p2:br),   // right
-            .segment(p1:br, p2:bl),   // bottom
-            .segment(p1:bl, p2:tl)]   // left
-    }
+//        let flip = CGAffineTransform(scaleX: 1, y: -1)
+//        let rotate = flip.rotated(by: CGFloat(-.pi / 2.0))
+//        let translate = rotate.translatedBy(x: -1, y: -1)
+//        let xform = translate.scaledBy(x: CGFloat(2/fbSize.width), y: CGFloat(2/fbSize.height))
+//        let glRect = bounds.applying(xform)
+//
+//        let x = Float(glRect.origin.x)
+//        let y = Float(glRect.origin.y)
+//        let width = Float(glRect.size.width)
+//        let height = Float(glRect.size.height)
+//
+//        let tl = Position(x, y)
+//        let tr = Position(x + width, y)
+//        let bl = Position(x, y + height)
+//        let br = Position(x + width, y + height)
+//
+//        return [.segment(p1:tl, p2:tr),   // top
+//            .segment(p1:tr, p2:br),   // right
+//            .segment(p1:br, p2:bl),   // bottom
+//            .segment(p1:bl, p2:tl)]   // left
+//    }
 }
